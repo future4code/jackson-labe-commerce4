@@ -1,5 +1,6 @@
 import React from 'react';
 import Filter from './assets/components/FilterBar/FilterBar'
+import ProductCard from './assets/components/ProductCard/ProductCard'
 
 const products = [
   { img: "src", name: "Item 1", price: 100},
@@ -29,11 +30,10 @@ class App extends React.Component {
             return <div>{prod.name}</div>
           })}
           </div>
-        {/* GRID DE PRODUTOS */}
+        <ProductCard />
         {/* SHOPPING CART RENDERIZADO CONDICIONALMENTE       */}
       </div>
     );
   }
-}
 
 export default App;
