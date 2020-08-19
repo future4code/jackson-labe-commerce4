@@ -16,20 +16,27 @@ const FilterBlock = styled.div`
     flex-direction: column;
 `
 
-class Filter extends React.Component {
+const Filter = (props) => {
 
-    onChangeMin = (e) => {
-        //devolve valor do input para componente pai (App)
+    const onChangeMin = (e) => {
         const valorInputMin = e.target.value
-        console.log(valorInputMin)
+
+        props.onChangeAllFilters(valorInputMin)
     }
     
-    onChangeMax = (e) => {
-        //devolve valor do input para componente pai (App)
+    const onChangeMax = (e) => {
         const valorInputMax = e.target.value
-        console.log(valorInputMax)
+
+        props.onChangeAllFilters(valorInputMax)
     }
-    render() {
+    
+    const onChangeSearch = (e) => {
+        const valorSearchText = e.target.value
+        
+        props.onChangeAllFilters(valorSearchText)
+        //devolver valor do input para componente pai (App)
+    }
+
         return(
             <FilterDiv>
                 <h2>Filtros:</h2>
@@ -37,23 +44,24 @@ class Filter extends React.Component {
                     <label>Valor Mínimo</label>
                     <input 
                         type="number"
-                        onChange={this.onChangeMin}
+                        onChange={onChangeMin}
                         />
                 </FilterBlock>
                 <FilterBlock>
                     <label>Valor Máximo</label>
                     <input 
                         type="number"
-                        onChange={this.onChangeMax}
+                        onChange={onChangeMax}
                         />
                 </FilterBlock>
                 <FilterBlock>
                     <label>Buscar produto</label>
-                    <input type="text"/>
+                    <input 
+                        type="text"
+                        onChange={onChangeSearch}/>
                 </FilterBlock>
             </FilterDiv>
         )
-    }
 }
 
 export default Filter;
