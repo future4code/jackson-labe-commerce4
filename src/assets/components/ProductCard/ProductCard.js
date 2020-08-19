@@ -5,7 +5,7 @@ import {Card, Image} from './styleProductCard'
 class ProductCard extends React.Component {
 
     addToCart = () => {
-        console.log("Adicionar ao carrinho")
+        //console.log("Adicionar ao carrinho")
     }
 
     render() {

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FilterDiv = styled.div`
-    width: 300px;
+const FilterSpan = styled.span`
+    width: 20%;
     display: flex;
     margin: 20px;
     flex-direction: column;
@@ -19,15 +19,15 @@ const FilterBlock = styled.div`
 const Filter = (props) => {
 
     const onChangeMin = (e) => {
-        const valorInputMin = e.target.value
+        const newMinValue = Number(e.target.value)
 
-        props.onChangeAllFilters(valorInputMin)
+        props.onChangeAllFilters(newMinValue)
     }
     
     const onChangeMax = (e) => {
-        const valorInputMax = e.target.value
+        const newMaxValue = Number(e.target.value)
 
-        props.onChangeAllFilters(valorInputMax)
+        props.onChangeAllFilters(newMaxValue)
     }
     
     const onChangeSearch = (e) => {
@@ -38,7 +38,7 @@ const Filter = (props) => {
     }
 
         return(
-            <FilterDiv>
+            <FilterSpan>
                 <h2>Filtros:</h2>
                 <FilterBlock>
                     <label>Valor Mínimo</label>
@@ -60,7 +60,7 @@ const Filter = (props) => {
                         type="text"
                         onChange={onChangeSearch}/>
                 </FilterBlock>
-            </FilterDiv>
+            </FilterSpan>
         )
 }
 
