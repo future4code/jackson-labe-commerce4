@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Filter/>
+        <Filter onChangeFilterBar={}/>
         <div>
           {this.state.products.map((prod) => {
             return <div>{prod.name}</div>
