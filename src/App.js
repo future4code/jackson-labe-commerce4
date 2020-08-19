@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components'
 import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
 
-const products = [
+const productsDataBase = [
   { image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
   { image: "https://picsum.photos/200/202", name: "Item 2", price: 90},
   { image: "https://picsum.photos/200/203", name: "Item 3", price: 80},
@@ -13,41 +14,44 @@ const products = [
   { image: "https://picsum.photos/200/208", name: "Item 8", price: 70}
 ]
 
+const ProductGrid = styled.span`
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 5px;
+  margin: 20px;
+`
+
 class App extends React.Component {
 
   state = {
-    products: products,
+    products: productsDataBase,
     valorInputMin: "",
     valorInputMax: "",
     valorSearchText: ""
   }
 
-  novaFuncao = (valorInput) => {
-    console.log(this.state.valorInputMin)
-    const filteredProducts = this.state.products.filter((prod) => {
-      if (this.state.valorInputMin > prod.price) {
-        console.log(prod)
-        return true
-      } else {
-        return false
-      }
+  filterFunction = (newMinValue, newMaxValue) => {
+    
+    const filteredProducts = productsDataBase.filter((prod) => {
+      return newMinValue < prod.price
     })
     
-    this.setState({ products: filteredProducts, valorSearchText: valorInput})
+    this.setState({ products: filteredProducts, valorInputMin: newMinValue, valorInputMax: newMaxValue})
+
   }
 
   render() {
     return (
       <div className="App">
         <Filter
-          onChangeAllFilters={this.novaFuncao}
+          onChangeAllFilters={this.filterFunction}
         />
-        <div>
+        <ProductGrid>
           {this.state.products.map((prod) => {
           return <ProductCard image={prod.image} name={prod.name} price={prod.price} />
           })}
-        </div>
-        {/* RENDERIZA PRODUTOS CONFORME FILTRO */}
+        </ProductGrid>
         {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
       </div>
     );
