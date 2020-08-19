@@ -3,14 +3,14 @@ import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
 
 const products = [
-  { img: "src", name: "Item 1", price: 100},
-  { img: "src", name: "Item 2", price: 90},
-  { img: "src", name: "Item 3", price: 80},
-  { img: "src", name: "Item 4", price: 50},
-  { img: "src", name: "Item 5", price: 110},
-  { img: "src", name: "Item 6", price: 30},
-  { img: "src", name: "Item 7", price: 100},
-  { img: "src", name: "Item 8", price: 70}
+  { image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
+  { image: "https://picsum.photos/200/202", name: "Item 2", price: 90},
+  { image: "https://picsum.photos/200/203", name: "Item 3", price: 80},
+  { image: "https://picsum.photos/200/204", name: "Item 4", price: 50},
+  { image: "https://picsum.photos/200/205", name: "Item 5", price: 110},
+  { image: "https://picsum.photos/200/206", name: "Item 6", price: 30},
+  { image: "https://picsum.photos/200/207", name: "Item 7", price: 100},
+  { image: "https://picsum.photos/200/208", name: "Item 8", price: 70}
 ]
 
 class App extends React.Component {
@@ -18,22 +18,40 @@ class App extends React.Component {
   state = {
     products: products,
     valorInputMin: "",
-    valorInputMax: ""
+    valorInputMax: "",
+    valorSearchText: ""
+  }
+
+  novaFuncao = (valorInput) => {
+    console.log(this.state.valorInputMin)
+    const filteredProducts = this.state.products.filter((prod) => {
+      if (this.state.valorInputMin > prod.price) {
+        console.log(prod)
+        return true
+      } else {
+        return false
+      }
+    })
+    
+    this.setState({ products: filteredProducts, valorSearchText: valorInput})
   }
 
   render() {
     return (
       <div className="App">
-        <Filter onChangeFilterBar={}/>
+        <Filter
+          onChangeAllFilters={this.novaFuncao}
+        />
         <div>
           {this.state.products.map((prod) => {
-            return <div>{prod.name}</div>
+          return <ProductCard image={prod.image} name={prod.name} price={prod.price} />
           })}
-          </div>
-        <ProductCard />
-        {/* SHOPPING CART RENDERIZADO CONDICIONALMENTE       */}
+        </div>
+        {/* RENDERIZA PRODUTOS CONFORME FILTRO */}
+        {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
       </div>
     );
   }
+}
 
 export default App;
