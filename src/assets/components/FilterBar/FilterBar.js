@@ -19,15 +19,21 @@ const FilterBlock = styled.div`
 class Filter extends React.Component {
 
     onChangeMin = (e) => {
-        //devolve valor do input para componente pai (App)
         const valorInputMin = e.target.value
         console.log(valorInputMin)
+        //devolver valor do input para componente pai (App)
     }
     
     onChangeMax = (e) => {
-        //devolve valor do input para componente pai (App)
         const valorInputMax = e.target.value
         console.log(valorInputMax)
+        //devolver valor do input para componente pai (App)
+    }
+    
+    onChangeSearch = (e) => {
+        const valorSearchText = e.target.value
+        console.log(valorSearchText)
+        //devolver valor do input para componente pai (App)
     }
     render() {
         return(
@@ -49,7 +55,9 @@ class Filter extends React.Component {
                 </FilterBlock>
                 <FilterBlock>
                     <label>Buscar produto</label>
-                    <input type="text"/>
+                    <input 
+                        type="text"
+                        onChange={this.onChangeSearch}/>
                 </FilterBlock>
             </FilterDiv>
         )

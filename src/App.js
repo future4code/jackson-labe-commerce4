@@ -24,16 +24,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Filter/>
-        <div>
-          {this.state.products.map((prod) => {
-            return <div>{prod.name}</div>
-          })}
-          </div>
+        <Filter
+
+        />
+        {/* RENDERIZA PRODUTOS CONFORME FILTRO */}
         <ProductCard />
-        {/* SHOPPING CART RENDERIZADO CONDICIONALMENTE       */}
+        {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
       </div>
     );
   }
+}
 
 export default App;
