@@ -26,6 +26,7 @@ class App extends React.Component {
     valorInputMin: 0,
     valorInputMax: Infinity,
     valorSearchText: "",
+    shoppingCartVisibility: false
   }
 
   updateMinValue = (newMinValue) => {
@@ -44,7 +45,6 @@ class App extends React.Component {
   filterFunction = () => {
     const filteredProducts = productsDataBase.filter((prod) => {
       if(this.state.valorInputMax !== 0){
-        console.log(this.state.valorInputMax)
         return prod.price >= this.state.valorInputMin && prod.price <= this.state.valorInputMax && prod.name.includes(this.state.valorSearchText)
       } else if(this.state.valorInputMax === 0){
         return this.setState({valorInputMax: Infinity}, this.filterFunction)
@@ -56,14 +56,22 @@ class App extends React.Component {
     
   }
 
+  changeCartVisibility = () => {
+    this.setState({ shoppingCartVisibility: !this.state.shoppingCartVisibility })
+  }
+
+  // addItemArray = (novoArray) => {
+  //   novoArray.map((prod) => {
+  //   return <p>{prod.name}</p>
+  //     })}
+
   render() {
-   
 
     return (
       <div>
         <Header>
-        <Magalu src={magalu}/>
-        <Logo src={logo}/>
+          <Magalu src={magalu}/>
+          <Logo src={logo}/>
         </Header>
 
         <ContainerApp>
@@ -77,8 +85,10 @@ class App extends React.Component {
           return <ProductCard image={prod.image} name={prod.name} price={prod.price} id={prod.id}/>
           })}
         </ProductGrid>
-        <ShoppingCart/>
-        {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
+        <div>
+          <button onClick={this.changeCartVisibility}>Carrinho</button>
+          {this.state.shoppingCartVisibility && <ShoppingCart/>}
+        </div>
       </ContainerApp>
       </div>
     );

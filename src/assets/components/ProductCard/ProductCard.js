@@ -4,13 +4,22 @@ import {Card, Image} from './styleProductCard'
 
 class ProductCard extends React.Component {
 
+    state = {
+        shoppingItems: [],
+        totalAPagar: 0
+    }
+
     addToCart = () => {
-        const choseItem = this.props.id
-        console.log(choseItem)
+        const novoObjeto = {id: this.props.id, nome: this.props.name, price: this.props.price}
+        const novoArrayDeItems = [...this.state.shoppingItems, novoObjeto]
+        console.log(novoArrayDeItems)
+    
+        this.setState({ shoppingItems: novoArrayDeItems, totalAPagar: (this.state.totalAPagar + novoObjeto.price)})
+        
+        // props.addItemArray(novoArrayDeItems)
     }
 
     render() {
-
         return (
             <Card id={this.props.id}>
                 <Image src={this.props.image}/>
