@@ -1,20 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const FilterSpan = styled.span`
-    width: 20%;
-    display: flex;
-    margin: 20px;
-    flex-direction: column;
-    border: solid 1px black;
-    padding: 10px;
-`
+import {FilterBar, SearchInput, Filters , FilterContainer, LabelValueInput, ValueInput,FilterIcon, IconLabel, FilterIconContainer, PriceFiltersContainer} from '././styleFilterBar'
 
-const FilterBlock = styled.div`
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-`
+import filtericon from '../../img/filter.png'
+
 
 const Filter = (props) => {
 
@@ -34,29 +23,37 @@ const Filter = (props) => {
     }
 
         return(
-            <FilterSpan>
-                <h2>Filtros:</h2>
-                <FilterBlock>
-                    <label>Valor Mínimo</label>
-                    <input 
-                        type="number"
-                        onChange={onChangeMin}
-                        />
-                </FilterBlock>
-                <FilterBlock>
-                    <label>Valor Máximo</label>
-                    <input 
-                        type="number"
-                        onChange={onChangeMax}
-                        />
-                </FilterBlock>
-                <FilterBlock>
-                    <label>Buscar produto</label>
-                    <input 
+            <FilterBar>
+                <SearchInput 
+                        placeholder="Procure pelo código do seu item! "
                         type="text"
                         onChange={onChangeSearch}/>
-                </FilterBlock>
-            </FilterSpan>
+                <Filters>
+                    <FilterIconContainer>
+                <FilterIcon src={filtericon} />
+                <IconLabel>Filtre seu produto por preço!</IconLabel>
+                </FilterIconContainer>
+                <PriceFiltersContainer>
+                <FilterContainer>
+                    <LabelValueInput>Valor Mínimo</LabelValueInput>
+                    <ValueInput 
+                        type="number"
+                        placeholder="valor min."
+                        onChange={onChangeMin}
+                        />
+                </FilterContainer>
+                <FilterContainer>
+                    <LabelValueInput>Valor Máximo</LabelValueInput>
+                    <ValueInput
+                        type="number"
+                        placeholder="valor máx."
+                        onChange={onChangeMax}
+                        />
+                </FilterContainer>
+                </PriceFiltersContainer>
+                </Filters>
+                    
+            </FilterBar>
         )
 }
 
