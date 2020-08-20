@@ -21,19 +21,16 @@ const Filter = (props) => {
     const onChangeMin = (e) => {
         const newMinValue = Number(e.target.value)
         props.setNewMinValue(newMinValue)
-        // props.onChangeAllFilters(newMinValue)
     }
     
     const onChangeMax = (e) => {
         const newMaxValue = Number(e.target.value)
         props.setNewMaxValue(newMaxValue)
-        // props.onChangeAllFilters(newMaxValue)
     }
     
     const onChangeSearch = (e) => {
-        const searchTextValue = e.target.value
-        
-        props.onChangeAllFilters(searchTextValue)
+        const newTextValue = String(e.target.value)
+        props.setNewTextValue(newTextValue)
     }
 
         return(
