@@ -3,10 +3,11 @@ import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
 import ShoppingCart from './assets/components/ShoppingCart/ShoppingCart'
 
-import {ProductGrid, ContainerApp, Header, Logo, Magalu} from './styleApp'
+import {ProductGrid, ContainerApp, Header, Logo, Magalu, ShoppingCartButton, LabelShoppingCartButton, Magalogo,ShoppingCartContainer} from './styleApp'
 
 import logo from './assets/img/Labelu.png'
 import magalu from './assets/img/magalu.png'
+import shoppingcartimage from './assets/img/shoping-cart-icon.png'
 
 const productsDataBase = [
   { id: 1, image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
@@ -70,8 +71,14 @@ class App extends React.Component {
     return (
       <div>
         <Header>
+          <Magalogo>
           <Magalu src={magalu}/>
           <Logo src={logo}/>
+          </Magalogo>
+          <ShoppingCartContainer>
+          <ShoppingCartButton src={shoppingcartimage} onClick={this.changeCartVisibility} />
+          <LabelShoppingCartButton onClick={this.changeCartVisibility}>Adicione itens!</LabelShoppingCartButton>
+          </ShoppingCartContainer>
         </Header>
 
         <ContainerApp>
@@ -86,7 +93,7 @@ class App extends React.Component {
           })}
         </ProductGrid>
         <div>
-          <button onClick={this.changeCartVisibility}>Carrinho</button>
+
           {this.state.shoppingCartVisibility && <ShoppingCart/>}
         </div>
       </ContainerApp>
