@@ -52,7 +52,7 @@ export const ShoppingCartButton = styled.img`
 
 
   &:active {
-    transform: scale(0.2);  
+    transform: scale(0.9);  
 }
   `
 
@@ -67,7 +67,7 @@ export const LabelShoppingCartButton = styled.label`
 
 
   &:active {
-    transform: scale(0.2);  
+    transform: scale(0.9);  
 
 `
 
