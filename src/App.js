@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
+import { thisExpression } from '@babel/types';
 
 const productsDataBase = [
   { image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
@@ -26,26 +27,57 @@ class App extends React.Component {
 
   state = {
     products: productsDataBase,
-    valorInputMin: "",
-    valorInputMax: "",
-    valorSearchText: ""
+    valorInputMin: null,
+    valorInputMax: Infinity,
+    valorSearchText: "",
+    // filtros: { 
+    //   valorInputMin: 0, 
+    //   valorINputMax: -Infinity
+    // },
   }
 
-  filterFunction = (newMinValue, newMaxValue) => {
-    
+  updateMinValue = (newMinValue) => {
+    this.setState({valorInputMin: newMinValue})
+    console.log("valor minimo digitado:", newMinValue)
+    console.log("o estado minimo:", this.state.valorInputMin)
+    this.filterFunction()
+  }
+
+  updateMaxValue = (newMaxValue) => {
+    this.setState({valorInputMax: newMaxValue})
+    console.log("valor maximo digitado:", newMaxValue)
+    console.log("o estado maximo:", this.state.valorInputMax)
+    this.filterFunction()
+  }
+
+    filterFunction = () => {
     const filteredProducts = productsDataBase.filter((prod) => {
-      return newMinValue < prod.price
+          return prod.price > this.state.valorInputMin && prod.price < this.state.valorInputMax
     })
     
-    this.setState({ products: filteredProducts, valorInputMin: newMinValue, valorInputMax: newMaxValue})
+    this.setState({ products: filteredProducts })
 
   }
 
+
+  // filterFunction = (newMinValue, newMaxValue) => {
+  //   const filteredProducts = productsDataBase.filter((prod) => {
+  //         return newMaxValue < prod.price
+  //   })
+    
+  //   this.setState({ products: filteredProducts, valorInputMin: newMinValue, valorInputMax: newMaxValue})
+
+  // }
+
   render() {
+   
+
     return (
       <div className="App">
         <Filter
-          onChangeAllFilters={this.filterFunction}
+          // onChangeAllFilters={this.filterFunction}
+          setNewMinValue={this.updateMinValue}
+          setNewMaxValue={this.updateMaxValue}
         />
         <ProductGrid>
           {this.state.products.map((prod) => {

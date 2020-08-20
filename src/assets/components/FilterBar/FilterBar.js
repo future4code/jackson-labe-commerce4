@@ -20,21 +20,20 @@ const Filter = (props) => {
 
     const onChangeMin = (e) => {
         const newMinValue = Number(e.target.value)
-
-        props.onChangeAllFilters(newMinValue)
+        props.setNewMinValue(newMinValue)
+        // props.onChangeAllFilters(newMinValue)
     }
     
     const onChangeMax = (e) => {
         const newMaxValue = Number(e.target.value)
-
-        props.onChangeAllFilters(newMaxValue)
+        props.setNewMaxValue(newMaxValue)
+        // props.onChangeAllFilters(newMaxValue)
     }
     
     const onChangeSearch = (e) => {
-        const valorSearchText = e.target.value
+        const searchTextValue = e.target.value
         
-        props.onChangeAllFilters(valorSearchText)
-        //devolver valor do input para componente pai (App)
+        props.onChangeAllFilters(searchTextValue)
     }
 
         return(
