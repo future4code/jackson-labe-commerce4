@@ -5,17 +5,18 @@ import {Card, Image} from './styleProductCard'
 class ProductCard extends React.Component {
 
     addToCart = () => {
-        //console.log("Adicionar ao carrinho")
+        const choseItem = this.props.id
+        console.log(choseItem)
     }
 
     render() {
 
         return (
-            <Card>
+            <Card id={this.props.id}>
                 <Image src={this.props.image}/>
                 <h4>{this.props.name}</h4>
                 <p>{this.props.price}</p>
-                <button onClick={this.addToCart()}>Adicionar ao carrinho</button>
+                <button onClick={this.addToCart}>Adicionar ao carrinho</button>
             </Card>
         )
 
