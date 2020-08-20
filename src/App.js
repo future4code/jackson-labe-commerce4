@@ -3,7 +3,10 @@ import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
 import ShoppingCart from './assets/components/ShoppingCart/ShoppingCart'
 
-import {ProductGrid, ContainerApp} from './styleApp'
+import {ProductGrid, ContainerApp, Header, Logo, Magalu} from './styleApp'
+
+import logo from './assets/img/Labelu.png'
+import magalu from './assets/img/magalu.png'
 
 const productsDataBase = [
   { id: 1, image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
@@ -57,7 +60,13 @@ class App extends React.Component {
    
 
     return (
-      <ContainerApp>
+      <div>
+        <Header>
+        <Magalu src={magalu}/>
+        <Logo src={logo}/>
+        </Header>
+
+        <ContainerApp>
         <Filter
           setNewMinValue={this.updateMinValue}
           setNewMaxValue={this.updateMaxValue}
@@ -71,6 +80,7 @@ class App extends React.Component {
         <ShoppingCart/>
         {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
       </ContainerApp>
+      </div>
     );
   }
 }
