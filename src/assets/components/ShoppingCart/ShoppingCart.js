@@ -2,16 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CartSpan = styled.span`
-    width: 100%;
-    height: 20em;
+    position:relative;
+    top: 50px;
+    left: 50vw;
+    height: 50vh;
+    width:40vw;
+    text-align:center;
+
     display: flex;
-    margin: 20px;
     flex-direction: column;
-    border: solid 1px black;
+    background-color: #F0F0F0;
+    border: solid 1px #F0F0F0
     padding: 10px;
+
 `
 const ItemsList = styled.ul`
-    width: 100%100%;
+    width: 100%;
 `
 
 class ShoppingCart extends React.Component {

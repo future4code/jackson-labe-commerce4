@@ -3,7 +3,7 @@ import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
 import ShoppingCart from './assets/components/ShoppingCart/ShoppingCart'
 
-import {ProductGrid, ContainerApp, Header, Logo, Magalu, ShoppingCartButton, LabelShoppingCartButton, Magalogo,ShoppingCartContainer} from './styleApp'
+import {ProductGrid, ContainerApp, Header, Logo, Magalu, ShoppingCartButton, LabelShoppingCartButton, Magalogo,ShoppingButtonContainer} from './styleApp'
 
 import logo from './assets/img/Labelu.png'
 import magalu from './assets/img/magalu.png'
@@ -75,18 +75,23 @@ class App extends React.Component {
           <Magalu src={magalu}/>
           <Logo src={logo}/>
           </Magalogo>
-          <ShoppingCartContainer>
-          <ShoppingCartButton src={shoppingcartimage} onClick={this.changeCartVisibility} />
-          <LabelShoppingCartButton onClick={this.changeCartVisibility}>Adicione itens!</LabelShoppingCartButton>
-          </ShoppingCartContainer>
-        </Header>
-
-        <ContainerApp>
-        <Filter
+          <Filter
           setNewMinValue={this.updateMinValue}
           setNewMaxValue={this.updateMaxValue}
           setNewTextValue={this.updateSearchValue}
         />
+          <ShoppingButtonContainer>
+          <ShoppingCartButton src={shoppingcartimage} onClick={this.changeCartVisibility} />
+          <LabelShoppingCartButton onClick={this.changeCartVisibility}>Adicione itens!</LabelShoppingCartButton>
+          </ShoppingButtonContainer>
+        </Header>
+
+        <ContainerApp>
+        {/* <Filter
+          setNewMinValue={this.updateMinValue}
+          setNewMaxValue={this.updateMaxValue}
+          setNewTextValue={this.updateSearchValue}
+        /> */}
         <ProductGrid>
           {this.state.products.map((prod) => {
           return <ProductCard image={prod.image} name={prod.name} price={prod.price} id={prod.id}/>
