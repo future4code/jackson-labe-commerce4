@@ -9,14 +9,14 @@ import logo from './assets/img/Labelu.png'
 import magalu from './assets/img/magalu.png'
 
 const productsDataBase = [
-  { image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
-  { image: "https://picsum.photos/200/202", name: "Item 2", price: 90},
-  { image: "https://picsum.photos/200/203", name: "Item 3", price: 80},
-  { image: "https://picsum.photos/200/204", name: "Item 4", price: 50},
-  { image: "https://picsum.photos/200/205", name: "Item 5", price: 110},
-  { image: "https://picsum.photos/200/206", name: "Item 6", price: 30},
-  { image: "https://picsum.photos/200/207", name: "Item 7", price: 100},
-  { image: "https://picsum.photos/200/208", name: "Item 8", price: 70}
+  { id: 1, image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
+  { id: 2, image: "https://picsum.photos/200/202", name: "Item 2", price: 90},
+  { id: 3, image: "https://picsum.photos/200/203", name: "Item 3", price: 80},
+  { id: 4, image: "https://picsum.photos/200/204", name: "Item 4", price: 50},
+  { id: 5, image: "https://picsum.photos/200/205", name: "Item 5", price: 110},
+  { id: 6, image: "https://picsum.photos/200/206", name: "Item 6", price: 30},
+  { id: 7, image: "https://picsum.photos/200/207", name: "Item 7", price: 100},
+  { id: 8, image: "https://picsum.photos/200/208", name: "Item 8", price: 70}
 ]
 
 class App extends React.Component {
@@ -26,6 +26,7 @@ class App extends React.Component {
     valorInputMin: 0,
     valorInputMax: Infinity,
     valorSearchText: "",
+    shoppingCartVisibility: false
   }
 
   updateMinValue = (newMinValue) => {
@@ -44,7 +45,6 @@ class App extends React.Component {
   filterFunction = () => {
     const filteredProducts = productsDataBase.filter((prod) => {
       if(this.state.valorInputMax !== 0){
-        console.log(this.state.valorInputMax)
         return prod.price >= this.state.valorInputMin && prod.price <= this.state.valorInputMax && prod.name.includes(this.state.valorSearchText)
       } else if(this.state.valorInputMax === 0){
         return this.setState({valorInputMax: Infinity}, this.filterFunction)
@@ -56,14 +56,22 @@ class App extends React.Component {
     
   }
 
+  changeCartVisibility = () => {
+    this.setState({ shoppingCartVisibility: !this.state.shoppingCartVisibility })
+  }
+
+  // addItemArray = (novoArray) => {
+  //   novoArray.map((prod) => {
+  //   return <p>{prod.name}</p>
+  //     })}
+
   render() {
-   
 
     return (
       <div>
         <Header>
-        <Magalu src={magalu}/>
-        <Logo src={logo}/>
+          <Magalu src={magalu}/>
+          <Logo src={logo}/>
         </Header>
 
         <ContainerApp>
@@ -74,11 +82,13 @@ class App extends React.Component {
         />
         <ProductGrid>
           {this.state.products.map((prod) => {
-          return <ProductCard image={prod.image} name={prod.name} price={prod.price} />
+          return <ProductCard image={prod.image} name={prod.name} price={prod.price} id={prod.id}/>
           })}
         </ProductGrid>
-        <ShoppingCart/>
-        {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
+        <div>
+          <button onClick={this.changeCartVisibility}>Carrinho</button>
+          {this.state.shoppingCartVisibility && <ShoppingCart/>}
+        </div>
       </ContainerApp>
       </div>
     );
