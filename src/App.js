@@ -1,8 +1,10 @@
 import React from 'react';
+import './App.css'
 import styled from 'styled-components'
 import Filter from './assets/components/FilterBar/FilterBar'
 import ProductCard from './assets/components/ProductCard/ProductCard'
-import { thisExpression } from '@babel/types';
+import ShoppingCart from './assets/components/ShoppingCart/ShoppingCart'
+// import { thisExpression } from '@babel/types';
 
 const productsDataBase = [
   { image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
@@ -27,7 +29,7 @@ class App extends React.Component {
 
   state = {
     products: productsDataBase,
-    valorInputMin: null,
+    valorInputMin: "fuck off",
     valorInputMax: Infinity,
     valorSearchText: "",
     // filtros: { 
@@ -37,26 +39,27 @@ class App extends React.Component {
   }
 
   updateMinValue = (newMinValue) => {
-    this.setState({valorInputMin: newMinValue})
-    console.log("valor minimo digitado:", newMinValue)
-    console.log("o estado minimo:", this.state.valorInputMin)
-    this.filterFunction()
+    this.setState({valorInputMin: newMinValue}, this.filterFunction)
   }
-
+  
   updateMaxValue = (newMaxValue) => {
-    this.setState({valorInputMax: newMaxValue})
-    console.log("valor maximo digitado:", newMaxValue)
-    console.log("o estado maximo:", this.state.valorInputMax)
-    this.filterFunction()
+    this.setState({valorInputMax: newMaxValue}, this.filterFunction)
+    
   }
-
-    filterFunction = () => {
+  
+  updateSearchValue = (newTextValue) => {
+    this.setState({valorSearchText: newTextValue}, this.filterFunction)
+  }
+  
+  filterFunction = () => {
     const filteredProducts = productsDataBase.filter((prod) => {
-          return prod.price > this.state.valorInputMin && prod.price < this.state.valorInputMax
+      return prod.price >= this.state.valorInputMin && prod.price <= this.state.valorInputMax && prod.name.includes(this.state.valorSearchText)
     })
     
     this.setState({ products: filteredProducts })
-
+    
+    console.log("o estado minimo:", this.state.valorInputMin)
+    console.log("o estado maximo:", this.state.valorInputMax)
   }
 
 
@@ -75,15 +78,16 @@ class App extends React.Component {
     return (
       <div className="App">
         <Filter
-          // onChangeAllFilters={this.filterFunction}
           setNewMinValue={this.updateMinValue}
           setNewMaxValue={this.updateMaxValue}
+          setNewTextValue={this.updateSearchValue}
         />
         <ProductGrid>
           {this.state.products.map((prod) => {
           return <ProductCard image={prod.image} name={prod.name} price={prod.price} />
           })}
         </ProductGrid>
+        <ShoppingCart/>
         {/* RENDERIZA SHOPPING CART CONFORME CLICK EM BOTÃO/ÍCONE*/}
       </div>
     );
