@@ -1,67 +1,60 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const FilterDiv = styled.div`
-    width: 300px;
-    display: flex;
-    margin: 20px;
-    flex-direction: column;
-    border: solid 1px black;
-    padding: 10px;
-`
+import {FilterBar, SearchInput, Filters , FilterContainer, LabelValueInput, ValueInput,FilterIcon, IconLabel, FilterIconContainer, PriceFiltersContainer} from '././styleFilterBar'
 
-const FilterBlock = styled.div`
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-`
+import filtericon from '../../img/filter.png'
 
-class Filter extends React.Component {
+const Filter = (props) => {
 
-    onChangeMin = (e) => {
-        const valorInputMin = e.target.value
-        console.log(valorInputMin)
-        //devolver valor do input para componente pai (App)
+    const onChangeMin = (e) => {
+        const newMinValue = Number(e.target.value)
+        props.setNewMinValue(newMinValue)
     }
     
-    onChangeMax = (e) => {
-        const valorInputMax = e.target.value
-        console.log(valorInputMax)
-        //devolver valor do input para componente pai (App)
+    const onChangeMax = (e) => {
+        const newMaxValue = Number(e.target.value)
+        props.setNewMaxValue(newMaxValue)
     }
     
-    onChangeSearch = (e) => {
-        const valorSearchText = e.target.value
-        console.log(valorSearchText)
-        //devolver valor do input para componente pai (App)
+    const onChangeSearch = (e) => {
+        const newTextValue = String(e.target.value)
+        props.setNewTextValue(newTextValue)
     }
-    render() {
-        return(
-            <FilterDiv>
-                <h2>Filtros:</h2>
-                <FilterBlock>
-                    <label>Valor Mínimo</label>
-                    <input 
-                        type="number"
-                        onChange={this.onChangeMin}
+
+    return(
+        <FilterBar>
+            <SearchInput 
+                    placeholder="Procure pelo código do seu item! "
+                    type="text"
+                    onChange={onChangeSearch}/>
+            
+            <Filters>
+                <FilterIconContainer>
+                    <FilterIcon src={filtericon} />
+                    <IconLabel>Filtre seu produto por preço!</IconLabel>
+                </FilterIconContainer>
+                
+                <PriceFiltersContainer>
+                    <FilterContainer>
+                        <LabelValueInput>Valor Mínimo</LabelValueInput>
+                        <ValueInput 
+                            type="number"
+                            placeholder="valor min."
+                            onChange={onChangeMin}
                         />
-                </FilterBlock>
-                <FilterBlock>
-                    <label>Valor Máximo</label>
-                    <input 
-                        type="number"
-                        onChange={this.onChangeMax}
+                    </FilterContainer>
+                    <FilterContainer>
+                        <LabelValueInput>Valor Máximo</LabelValueInput>
+                        <ValueInput
+                            type="number"
+                            placeholder="valor máx."
+                            onChange={onChangeMax}
                         />
-                </FilterBlock>
-                <FilterBlock>
-                    <label>Buscar produto</label>
-                    <input 
-                        type="text"
-                        onChange={this.onChangeSearch}/>
-                </FilterBlock>
-            </FilterDiv>
-        )
-    }
+                    </FilterContainer>
+                </PriceFiltersContainer>
+            </Filters>
+        </FilterBar>
+    )
 }
 
 export default Filter;
