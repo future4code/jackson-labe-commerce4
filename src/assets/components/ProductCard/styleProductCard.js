@@ -17,7 +17,6 @@ export const Card = styled.div`
     width: 30vw;
     }
 
-
 `
 export const CardBottom = styled.div`
 display: flex;
@@ -39,7 +38,6 @@ export const ProductPrice = styled.strong`
 
 export const Image = styled.img`
     width: 100%;
-
 `
 export const ButtonContainer = styled.div`
 display: flex;
