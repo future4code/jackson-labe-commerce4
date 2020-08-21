@@ -65,29 +65,10 @@ class App extends React.Component {
   }
 
   addToCart = (id, name, price) => {
+    const addedItem = {id: id, name: name, price: price, qnt:1}
+    const addedItemsArray = [...this.state.shoppingItems, addedItem]
 
-    const novoArray = this.state.shoppingItems.forEach((item) => {
-      if (id === item.id) {
-        item.qnt +=1
-      } else {
-        const addedItem = {id: id, name: name, price: price, qnt:1}
-        return [addedItem]
-      }
-     })
-     this.setState({ shoppingItems: novoArray, subtotal: (this.state.subtotal + addedItem.price)})
-
-
-
-
-    //  this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
-      
-    // return id === item.id ? item.qnt += 1 : false
-
-    // addToCart(id, name, price)
-    // onClick >> percorre array shoppingItems verificando se name(parâmetro) = name(propriedade de elemento existente).
-    // se true: (i) qnt += 1 (ii) cria novo array (iii) atribui ao estado shoppingItems
-    // se false: (i) cria novo objeto (ii) cria novo array (iii) atribui ao estado shoppingItems
-
+    this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
 }
 
 
