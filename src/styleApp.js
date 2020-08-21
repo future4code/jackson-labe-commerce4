@@ -27,6 +27,10 @@ export const Magalogo = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-left: 2em;
+
+  @media (max-width:600px) {
+  margin-left: 4em;
+}
   
 `
 //Logo Magalu
@@ -36,7 +40,6 @@ export const Logo = styled.img`
 `
 export const Magalu = styled.img`
   height: 6em;
-  
 `
 
 // SHOPPING CAR BUTTON (BOTÃO DO CARRINHO)

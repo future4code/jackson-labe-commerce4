@@ -7,17 +7,18 @@ import {ProductGrid, ContainerApp, Header, Logo, Magalu, ShoppingCartButton, Lab
 
 import logo from './assets/img/Labelu.png'
 import magalu from './assets/img/magalu.png'
+import astronauta from './assets/img/astronauta.png'
 import shoppingcartimage from './assets/img/shoping-cart-icon.png'
 
 const productsDataBase = [
-  { id: 1, image: "https://picsum.photos/200/201", name: "Item 1", price: 100},
-  { id: 2, image: "https://picsum.photos/200/202", name: "Item 2", price: 90},
-  { id: 3, image: "https://picsum.photos/200/203", name: "Item 3", price: 80},
-  { id: 4, image: "https://picsum.photos/200/204", name: "Item 4", price: 50},
-  { id: 5, image: "https://picsum.photos/200/205", name: "Item 5", price: 110},
-  { id: 6, image: "https://picsum.photos/200/206", name: "Item 6", price: 30},
-  { id: 7, image: "https://picsum.photos/200/207", name: "Item 7", price: 100},
-  { id: 8, image: "https://picsum.photos/200/208", name: "Item 8", price: 70}
+  { id: 2, image: "https://source.unsplash.com/800x600/?spacesuit", name: "Traje de astronauta", price: 900},
+  { id: 1, image: "https://source.unsplash.com/800x600/?space", name: "Viagem intergalática", price: 1999},
+  { id: 3, image: "https://source.unsplash.com/800x600/?astronaut", name: "Curso na Nasa", price: 200},
+  { id: 4, image: "https://source.unsplash.com/800x600/?galaxy", name: "Telescópio espacial", price: 500},
+  { id: 5, image: "https://source.unsplash.com/800x600/?satellite", name: "Satélite usado", price: 780},
+  { id: 6, image: "https://source.unsplash.com/800x600/?microorganism", name: "Amostra de vida alienígena", price: 300},
+  { id: 7, image: "https://source.unsplash.com/800x600/?nightsky", name: "Estrela cadente", price: 100},
+  { id: 8, image: "https://source.unsplash.com/800x600/?startrek", name: "Nave espacial", price: 1090}
 ]
 
 class App extends React.Component {
@@ -78,7 +79,7 @@ class App extends React.Component {
       <div>
         <Header>
           <Magalogo>
-            <Magalu src={magalu}/>
+            <Magalu src={astronauta}/>
             <Logo src={logo}/>
           </Magalogo>
           <Filter

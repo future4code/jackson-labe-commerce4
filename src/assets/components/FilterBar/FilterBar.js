@@ -24,7 +24,7 @@ const Filter = (props) => {
     return(
         <FilterBar>
             <SearchInput 
-                    placeholder="Procure pelo código do seu item! "
+                    placeholder="Procure pelo nome do produto! "
                     type="text"
                     onChange={onChangeSearch}/>
             
