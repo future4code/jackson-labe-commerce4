@@ -27,7 +27,9 @@ class App extends React.Component {
     valorInputMin: 0,
     valorInputMax: Infinity,
     valorSearchText: "",
-    shoppingCartVisibility: false
+    shoppingCartVisibility: false,
+    shoppingItems: [],
+    subtotal: 0,
   }
 
   updateMinValue = (newMinValue) => {
@@ -61,10 +63,12 @@ class App extends React.Component {
     this.setState({ shoppingCartVisibility: !this.state.shoppingCartVisibility })
   }
 
-  // addItemArray = (novoArray) => {
-  //   novoArray.map((prod) => {
-  //   return <p>{prod.name}</p>
-  //     })}
+  addToCart = (id, name, price) => {
+    const addedItem = {id: id, name: name, price: price}
+    const addedItemsArray = [...this.state.shoppingItems, addedItem]
+    this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
+}
+
 
   render() {
 
@@ -89,11 +93,14 @@ class App extends React.Component {
         <ContainerApp>
         <ProductGrid>
           {this.state.products.map((prod) => {
-          return <ProductCard image={prod.image} name={prod.name} price={prod.price} id={prod.id}/>
+          return(
+          <ProductCard image={prod.image} name={prod.name} price={prod.price} id={prod.id}
+          onAdd={this.addToCart}
+          />) 
           })}
         </ProductGrid>
         <div>
-          {this.state.shoppingCartVisibility && <ShoppingCart/>}
+          {this.state.shoppingCartVisibility && <ShoppingCart putInCart={this.state.shoppingItems} sendSubtotal={this.state.subtotal}/>}
         </div>
       </ContainerApp>
       </div>

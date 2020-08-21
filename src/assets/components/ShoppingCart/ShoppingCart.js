@@ -1,35 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const CartSpan = styled.span`
-    position:relative;
-    top: 50px;
-    left: 50vw;
-    height: 50vh;
-    width:40vw;
-    text-align:center;
+import {CartSpan, ItemsList} from './styleShoppingCart'
 
-    display: flex;
-    flex-direction: column;
-    background-color: #F0F0F0;
-    border: solid 1px #F0F0F0;
-    padding: 10px;
-`
-const ItemsList = styled.ul`
-    width: 100%;
-`
-
-class ShoppingCart extends React.Component {
-    render (){
-        return (
-            <CartSpan>
-                <h3>Carrinho:</h3>
-                <ItemsList>
-                    
-                </ItemsList>
-            </CartSpan>
-        )
-    }
+function CartItem(props) {
+    return <p>{props.qnt} {props.name} <b>X</b></p>
 }
 
+
+function ShoppingCart(props) {
+    return (
+        <CartSpan>
+            <h3>Carrinho:</h3>
+            <ItemsList>
+                {props.putInCart.map((item) => {
+                   return <CartItem qnt={item.qnt} name={item.name}/>
+                })}
+            </ItemsList>
+            <hr />
+            <h3>VALOR TOTAL</h3>
+            <p>{props.sendSubtotal}</p>
+        </CartSpan>
+    )
+}
 export default ShoppingCart;
