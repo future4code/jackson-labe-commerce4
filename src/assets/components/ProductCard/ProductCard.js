@@ -33,9 +33,9 @@ class ProductCard extends React.Component {
                         <ProductPrice>R${this.props.price}</ProductPrice>
                     </ProductInfoContainer>
                     <ButtonContainer>
-                    <ButtonAddToCart onClick={this.addToCart}><SpanButtonText>Adicionar à sacola</SpanButtonText><BagIcon src={bagicon}/> </ButtonAddToCart>
-                    
-
+                        <ButtonAddToCart onClick={this.addToCart}>
+                            <SpanButtonText>Adicionar à sacola</SpanButtonText><BagIcon src={bagicon}/> 
+                        </ButtonAddToCart>
                     </ButtonContainer>
                 </CardBottom>
             </Card>

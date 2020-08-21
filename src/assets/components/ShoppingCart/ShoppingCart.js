@@ -12,9 +12,8 @@ const CartSpan = styled.span`
     display: flex;
     flex-direction: column;
     background-color: #F0F0F0;
-    border: solid 1px #F0F0F0
+    border: solid 1px #F0F0F0;
     padding: 10px;
-
 `
 const ItemsList = styled.ul`
     width: 100%;
