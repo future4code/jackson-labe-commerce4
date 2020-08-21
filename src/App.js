@@ -30,6 +30,7 @@ class App extends React.Component {
     shoppingCartVisibility: false,
     shoppingItems: [],
     subtotal: 0,
+    totalItens: 0,
   }
 
   updateMinValue = (newMinValue) => {
@@ -64,8 +65,9 @@ class App extends React.Component {
   }
 
   addToCart = (id, name, price) => {
-    const addedItem = {id: id, name: name, price: price}
+    const addedItem = {id: id, name: name, price: price, qnt:1}
     const addedItemsArray = [...this.state.shoppingItems, addedItem]
+
     this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
 }
 
