@@ -60,7 +60,7 @@ export const ShoppingCartButton = styled.img`
   transition: transform 3s;
 
   &:active {
-    transform: scale(0.9);  
+    transform: scale(0.9);
 }
   `
 
