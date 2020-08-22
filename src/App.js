@@ -44,7 +44,8 @@ class App extends React.Component {
   }
   
   updateSearchValue = (newTextValue) => {
-    this.setState({valorSearchText: newTextValue}, this.filterFunction)
+
+    this.setState({valorSearchText: newTextValue }, this.filterFunction)
   }
   
   filterFunction = () => {
@@ -66,10 +67,28 @@ class App extends React.Component {
   }
 
   addToCart = (id, name, price) => {
-    const addedItem = {id: id, name: name, price: price, qnt:1}
-    const addedItemsArray = [...this.state.shoppingItems, addedItem]
+    
+    
+    let existe = this.state.shoppingItems.some((item) => {
+      return id === item.id
+    })
+    
+    if(existe) {
+      const novaLista = []
+      for(let i=0; i<this.state.shoppingItems.length; i++) {
+        let item = this.state.shoppingItems[i]
+        if(id === item.id) {
+          item.qnt +=1
+        }
+        novaLista.push(item)
+      }
+      this.setState({ shoppingItems: novaLista, subtotal: (this.state.subtotal + price)})
 
-    this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
+    } else {
+      const addedItem = {id: id, name: name, price: price, qnt:1}
+      const addedItemsArray = [...this.state.shoppingItems, addedItem]
+      this.setState({ shoppingItems: addedItemsArray, subtotal: (this.state.subtotal + addedItem.price)})
+    }
 }
 
 
